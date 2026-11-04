@@ -10,7 +10,7 @@ def renglon(pdf, texto, valor):
     pdf.cell(0, 9, valor, align="R", new_x="LMARGIN", new_y="NEXT")
  
     
-def armar_pdf(numero, fecha, cliente, producto, cantidad, precio,
+def armar_pdf(numero, fecha, cliente, nombres, cantidades, precios_unitarios,
               subtotal, descuento, iva, total):
     pdf = FPDF()                      # pdf es el documento
     pdf.add_page()
@@ -27,7 +27,11 @@ def armar_pdf(numero, fecha, cliente, producto, cantidad, precio,
     # datos del pedido
     pdf.set_font("Helvetica", "", 12)
     renglon(pdf, "Cliente", cliente)
-    renglon(pdf, f"{cantidad} x {producto}", f"${precio:.2f} c/u")
+    for i in range(len(nombres)):
+     importe = cantidades[i] * precios_unitarios[i]
+     texto = f"{cantidades[i]} x {nombres[i]} (${precios_unitarios[i]:.2f} c/u)"
+     valor = f"${importe:.2f}"
+     renglon(pdf, texto, valor)
     pdf.ln(4)
  
     # resumen
