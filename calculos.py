@@ -1,15 +1,9 @@
-
-productos = ["Alfajor", "Gaseosa", "Chicle", "Agua"]
-precios = [1500, 2800, 500, 1800]
-
+#buscar posicion del precio
 def buscar_posicion(lista, nombre):
     for i in range(len(lista)):
         if lista[i] == nombre:
             return i
     return -1
-
-
-#buscar posicion del precio y subtotal
 
 
 EFECTIVO = "Efectivo"
