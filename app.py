@@ -9,6 +9,7 @@ st.caption(mi_negocio.rubro)
 numero = st.number_input("N° de presupuesto", min_value=1, step=1) 
 fecha = st.date_input("Fecha")
 cliente = st.text_input("Ingrese su nombre")
+cliente = pdf_presupuesto.limpiar(cliente)
 
 # Selección de productos
 RENGLONES = 3
@@ -56,6 +57,9 @@ archivo = pdf_presupuesto.armar_pdf(
     total=total
 )
 
-st.download_button("Descargar presupuesto (PDF)", archivo,
-                   file_name=f"presupuesto_{numero}.pdf", mime="application/pdf")
+if cliente == "":
+    st.warning("Escribí el nombre del cliente para armar el presupuesto")
+else:
+    st.download_button("Descargar presupuesto (PDF)", archivo,
+        file_name=f"presupuesto_{numero}.pdf", mime="application/pdf")
 
